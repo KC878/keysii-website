@@ -1,19 +1,20 @@
 
 html, body {
   height: 10;
+  background-color: #0f0f0f;
   
 }
 
 .main-container {
   display: grid;
-  grid-template-columns: 3fr 1fr;   /* main + sidebar */
+  grid-template-columns: 1fr;   /* main + sidebar */
   grid-template-rows: auto 1fr auto; /* header, content, footer */
   grid-template-areas:
-    "header header"
-    "content sidebar"
-    "footer footer";
+    "header"
+    "content"
+    "footer";
   gap: 20px;
-  height: 200vh;
+  height: 300vh;
   text-align: center;
   
   justify-content: center;
@@ -27,20 +28,46 @@ html, body {
   
 }
 .content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+  "content-one"
+  "content-list"
+  "content-two";
+
+
   grid-area: content;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   padding: 20px;
 }
-.sidebar {
-  grid-area: sidebar;
-  background-color: lightgreen;
+
+.content-one{
+  grid-area: content-one;
   padding: 20px;
+  /* background-color: lightcyan; */
+
+  display: grid;
+  grid-template-columns: 45% 45% 10%;
+
+}
+.content-list {
+  grid-area: content-list;
+  padding: 20px;
+  background-color: lightcoral;
+
+}
+.content-two {
+  grid-area: content-two;
+  padding: 20px;
+  background-color: lightpink;
+
 }
 
 .footer {
   grid-area: footer;
   background-color: purple;
-  padding: 20px;;
+  padding: 20px;
 }
 
 
