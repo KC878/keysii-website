@@ -24,6 +24,7 @@ html, body {
   grid-area: header;
   background-color: red;
   padding: 20px;
+  
 }
 .content {
   grid-area: content;
