@@ -1,13 +1,18 @@
 import "./styles/index.css";
 import "./styles/contentOneLeft.css";
+import "./styles/contentOneCenter.css";
+import "./styles/contentOneRight.css";
 
 import Header from "./components/Header";
 import { useState } from "react";
-import type { HeaderItems } from "./types/types"; // explicityly define type
+import type { HeaderItems, ClassText } from "./types/types"; // explicityly define type
+import type { IconType } from "react-icons";
+
 import { logos } from "./constants/logos";
 
 import { MdCallMade } from "react-icons/md";
 import { FaArrowDownLong } from "react-icons/fa6";
+import { FaLinkedin, FaFacebook, FaInstagram, FaGithub } from "react-icons/fa";
 
 const App = () => {
   const [headerItems] = useState<HeaderItems[]>([
@@ -19,6 +24,29 @@ const App = () => {
     { id: "contact", title: "CONTACT" },
   ]);
 
+  type SocialType = {
+    icon: IconType;
+    href: string;
+  };
+  const socialMedia: SocialType[] = [
+    {
+      icon: FaLinkedin,
+      href: "https://www.linkedin.com/in/kent-christian-cagadas-0985a1350/",
+    },
+    {
+      icon: FaGithub,
+      href: "https://github.com/KC878",
+    },
+    {
+      icon: FaFacebook,
+      href: "https://www.facebook.com/kentchristian.sagadac",
+    },
+    {
+      icon: FaInstagram,
+      href: "",
+    },
+  ];
+
   const [hireMeHover, setHireMeHover] = useState<boolean>(false);
   const [downArrowHover, setDownArrowHover] = useState<boolean>(false);
 
@@ -26,6 +54,17 @@ const App = () => {
 
   const [logoHover, setLogoHover] = useState<boolean>(false);
   const [somethingHover, setSomethingHover] = useState<boolean>(false);
+
+  const leftSideTextContent: ClassText[] = [
+    { class: "textOne", text: "Welcome To my World" },
+    { class: "textTwo", text: "Hello, I am" },
+    { class: "textThree", text: "Kent Christian E. Cagadas" },
+    { class: "textFour", text: "Full Stack Developer / Data Analyst" },
+    {
+      class: "textFive",
+      text: "Who says there are no shortcut in life? When I literally invented one.",
+    },
+  ];
 
   return (
     <>
@@ -42,7 +81,7 @@ const App = () => {
             <div
               style={{
                 flexGrow: 1,
-                backgroundColor: logoHover ? "skyblue" : "lightblue",
+                backgroundColor: logoHover ? "skyblue" : "initial",
                 transition: "background 0.3s",
                 cursor: "pointer",
               }}
@@ -70,7 +109,7 @@ const App = () => {
             <div
               style={{
                 flexGrow: 1,
-                backgroundColor: "blue",
+                // backgroundColor: "blue",
                 justifyContent: "center",
                 alignContent: "center",
               }}
@@ -94,16 +133,10 @@ const App = () => {
           <div className="content-one">
             {/* Left Side */}
             <div className="leftContentOne-container">
-              <div className="textOne">Welcome To my World</div>
-              <div className="textTwo">Hello, I am</div>
-              <div className="textThree">Kent Christian E. Cagadas</div>
-              <div className="textFour">
-                Full Stack Developer / Data Analyst
-              </div>
-              <div className="textFive">
-                Who says there are no shortcut in life? When I literally
-                invented one.
-              </div>
+              {leftSideTextContent.map((item) => (
+                <div className={item.class}>{item.text}</div>
+              ))}
+
               <div className="textSix">
                 <div
                   className="hireMe-button"
@@ -134,19 +167,21 @@ const App = () => {
                 </div>
               </div>
             </div>
-            <div
-              style={{
-                backgroundColor: "green",
-              }}
-            >
-              {" "}
+
+            {/* contentCenter */}
+            <div>
+              <div className="centerContentOne-container">
+                <img className="image-person" src="../../public/person.png" />
+              </div>
             </div>
-            <div
-              style={{
-                backgroundColor: "black",
-              }}
-            >
-              {" "}
+
+            {/* SocialMedias */}
+            <div className="rightContentOne-container">
+              {socialMedia.map((Icon, item) => (
+                <a href={Icon.href} target="_blank" rel="noopener noreferrer">
+                  <Icon.icon key={item} className="social-icons" />
+                </a>
+              ))}
             </div>
           </div>
           <div className="content-list">List Items</div>

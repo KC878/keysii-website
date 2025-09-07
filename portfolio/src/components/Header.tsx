@@ -7,7 +7,7 @@ const Header: React.FC<HeaderProps> = ({ headerItems }) => {
   return (
     <>
       {headerItems?.map((item) => (
-        <a href="" id={item.id}>
+        <a href="" id={item.id} style={{ color: "#eeeeee" }}>
           {item.title}
         </a>
       ))}

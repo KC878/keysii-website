@@ -1,0 +1,16 @@
+
+.rightContentOne-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+}
+
+.social-icons {
+  color: white;
+  align-self: end;
+  justify-self: end;
+  cursor: pointer;
+
+
+}

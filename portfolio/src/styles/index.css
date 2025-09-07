@@ -23,7 +23,7 @@ html, body {
 
 .header {
   grid-area: header;
-  background-color: red;
+  /* background-color: red; */
   padding: 20px;
   
 }
@@ -48,7 +48,7 @@ html, body {
   /* background-color: lightcyan; */
 
   display: grid;
-  grid-template-columns: 45% 45% 10%;
+  grid-template-columns: 56% 40% 4%;
 
 }
 .content-list {
