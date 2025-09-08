@@ -1,6 +1,7 @@
 export type HeaderItems = {
   id: string;
   title: string;
+  link?: URL;
 };
 
 export type ClassText = {

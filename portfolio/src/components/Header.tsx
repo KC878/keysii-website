@@ -1,13 +1,25 @@
-import type { HeaderItems } from "../types/types";
+import { useState } from "react";
+import type { HeaderProps } from "../interfaces/interfaces";
 
-interface HeaderProps {
-  headerItems: HeaderItems[];
-}
-const Header: React.FC<HeaderProps> = ({ headerItems }) => {
+const Header: React.FC<HeaderProps> = ({ headerItems, baseStyle }) => {
+  const [hover, setHover] = useState<string>("");
   return (
     <>
       {headerItems?.map((item) => (
-        <a href="" id={item.id} style={{ color: "#eeeeee" }}>
+        <a
+          href={item.link?.toString()}
+          target="_blank"
+          id={item.id}
+          style={{
+            ...baseStyle,
+            backgroundColor: hover === item.id ? "#ced2d7" : "initial",
+            color: hover === item.id ? "black" : "#eeeeee",
+          }}
+          onMouseEnter={() => {
+            setHover(item.id);
+          }}
+          onMouseLeave={() => setHover("")}
+        >
           {item.title}
         </a>
       ))}

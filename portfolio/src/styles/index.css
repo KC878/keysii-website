@@ -23,8 +23,10 @@ html, body {
 
 .header {
   grid-area: header;
-  /* background-color: red; */
-  padding: 20px;
+  /* background-color: red;  */
+  padding: 20px; 
+  
+
   
 }
 .content {

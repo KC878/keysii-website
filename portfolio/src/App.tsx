@@ -4,7 +4,7 @@ import "./styles/contentOneCenter.css";
 import "./styles/contentOneRight.css";
 
 import Header from "./components/Header";
-import { useState } from "react";
+import React, { useState } from "react";
 import type { HeaderItems, ClassText } from "./types/types"; // explicityly define type
 import type { IconType } from "react-icons";
 
@@ -15,10 +15,19 @@ import { FaArrowDownLong } from "react-icons/fa6";
 import { FaLinkedin, FaFacebook, FaInstagram, FaGithub } from "react-icons/fa";
 
 const App = () => {
+  const links = {
+    portfolioLink: new URL(
+      "https://flannel-egg-5a1.notion.site/Kent-Christian-E-Cagadas-Portfolio-246290f7e7248031a0eee3ab0b4d7bb9"
+    ),
+  };
+
   const [headerItems] = useState<HeaderItems[]>([
-    { id: "home", title: "HOME" },
+    {
+      id: "home",
+      title: "HOME",
+    },
     { id: "about", title: "ABOUT" },
-    { id: "portfolio", title: "PORTFOLIO" },
+    { id: "portfolio", title: "PORTFOLIO", link: links.portfolioLink },
     { id: "service", title: "SERVICE" },
     { id: "pages", title: "PAGES" },
     { id: "contact", title: "CONTACT" },
@@ -47,13 +56,33 @@ const App = () => {
     },
   ];
 
+  // inLine Styles //
+
+  // headerItems Style Prop
+  const headerBaseStyle: React.CSSProperties = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "30px",
+    width: "100px",
+    borderRadius: "10px",
+    cursor: "pointer",
+  };
+
+  // socialMedia Items style
+  const socialMediaStyle: React.CSSProperties = {
+    display: "flex",
+    justifyContent: "center",
+    padding: "7px",
+    borderRadius: "10px",
+  };
+
   const [hireMeHover, setHireMeHover] = useState<boolean>(false);
   const [downArrowHover, setDownArrowHover] = useState<boolean>(false);
 
-  console.log(typeof headerItems);
-
   const [logoHover, setLogoHover] = useState<boolean>(false);
   const [somethingHover, setSomethingHover] = useState<boolean>(false);
+  const [socialItemsHover, setSocialItemsHover] = useState<string>("");
 
   const leftSideTextContent: ClassText[] = [
     { class: "textOne", text: "Welcome To my World" },
@@ -102,7 +131,7 @@ const App = () => {
                 alignItems: "center",
               }}
             >
-              <Header headerItems={headerItems} />
+              <Header headerItems={headerItems} baseStyle={headerBaseStyle} />
             </div>
 
             {/* Something Button To add */}
@@ -142,7 +171,7 @@ const App = () => {
                   className="hireMe-button"
                   style={{
                     borderStyle: hireMeHover ? "inset" : "outset",
-                    backgroundColor: hireMeHover ? "lightskyblue" : "#ced2d7",
+                    backgroundColor: hireMeHover ? "lightblue" : "#ced2d7",
                     cursor: "pointer",
                   }}
                   onMouseEnter={() => setHireMeHover(true)}
@@ -178,7 +207,21 @@ const App = () => {
             {/* SocialMedias */}
             <div className="rightContentOne-container">
               {socialMedia.map((Icon, item) => (
-                <a href={Icon.href} target="_blank" rel="noopener noreferrer">
+                <a
+                  id={item.toString()}
+                  href={Icon.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    ...socialMediaStyle,
+                    backgroundColor:
+                      socialItemsHover === item.toString()
+                        ? "#2a2a2a"
+                        : "initial",
+                  }}
+                  onMouseEnter={() => setSocialItemsHover(item.toString())}
+                  onMouseLeave={() => setSocialItemsHover("")}
+                >
                   <Icon.icon key={item} className="social-icons" />
                 </a>
               ))}
