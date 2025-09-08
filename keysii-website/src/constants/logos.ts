@@ -1,5 +1,5 @@
-import logo from '../assets/vite.svg';
+import mainLogo from '../assets/mainLogo.png';
 
 export const logos = {
-  logo
+  mainLogo
 };

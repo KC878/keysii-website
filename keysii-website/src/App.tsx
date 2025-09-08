@@ -14,6 +14,7 @@ import { images } from "./constants/images";
 import { MdCallMade } from "react-icons/md";
 import { FaArrowDownLong } from "react-icons/fa6";
 import { FaLinkedin, FaFacebook, FaInstagram, FaGithub } from "react-icons/fa";
+import { HiRocketLaunch } from "react-icons/hi2";
 
 const App = () => {
   const links = {
@@ -82,7 +83,7 @@ const App = () => {
   const [downArrowHover, setDownArrowHover] = useState<boolean>(false);
 
   const [logoHover, setLogoHover] = useState<boolean>(false);
-  const [somethingHover, setSomethingHover] = useState<boolean>(false);
+  const [startNowHover, setStartNowHover] = useState<boolean>(false);
   const [socialItemsHover, setSocialItemsHover] = useState<string>("");
 
   const leftSideTextContent: ClassText[] = [
@@ -108,9 +109,23 @@ const App = () => {
             }}
           >
             {/* Logo */}
-            <div
+            <img
+              loading="lazy"
+              alt="logo"
+              src={logos.mainLogo}
               style={{
-                flexGrow: 1,
+                width: "4%",
+                borderRadius: "50%",
+                marginLeft: "50px",
+                cursor: "pointer",
+                transition: "background 0.3s",
+                transform: logoHover ? "scale(1.5)" : "scale(1)",
+              }}
+              onMouseEnter={() => setLogoHover(true)}
+              onMouseLeave={() => setLogoHover(false)}
+            />
+            {/* <div
+              style={{
                 backgroundColor: logoHover ? "skyblue" : "initial",
                 transition: "background 0.3s",
                 cursor: "pointer",
@@ -118,8 +133,8 @@ const App = () => {
               onMouseEnter={() => setLogoHover(true)}
               onMouseLeave={() => setLogoHover(false)}
             >
-              <img src={logos.logo} />
-            </div>
+              
+            </div> */}
 
             {/* HeaderItems */}
             <div
@@ -130,6 +145,7 @@ const App = () => {
                 gap: "10px",
                 justifyContent: "center",
                 alignItems: "center",
+                marginLeft: "120px",
               }}
             >
               <Header headerItems={headerItems} baseStyle={headerBaseStyle} />
@@ -138,22 +154,39 @@ const App = () => {
             {/* Something Button To add */}
             <div
               style={{
+                display: "flex",
                 flexGrow: 1,
                 // backgroundColor: "blue",
-                justifyContent: "center",
+                justifyContent: "end",
                 alignContent: "center",
+                marginRight: "20px",
               }}
             >
               <button
                 style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "5px",
+                  fontFamily: "Montserrat",
+                  fontWeight: "100px",
+                  borderRadius: "15px",
                   cursor: "pointer",
-                  backgroundColor: somethingHover ? "black" : "white",
+                  color: startNowHover ? "white" : "initial",
+                  backgroundColor: startNowHover ? "#39FF14" : "#ced2d7",
+                  boxShadow: startNowHover
+                    ? "0 0 10px #32CD32, 0 0 20px rgba(50, 205, 50, 0.6)"
+                    : "none",
                   transition: "background 0.3s",
+                  transform: startNowHover ? "scale(1.05)" : "scale(1)",
                 }}
-                onMouseEnter={() => setSomethingHover(true)}
-                onMouseLeave={() => setSomethingHover(false)}
+                onMouseEnter={() => setStartNowHover(true)}
+                onMouseLeave={() => setStartNowHover(false)}
+                onClick={() => alert("Create a Form Request")}
               >
-                Click
+                <p>START NOW</p>
+                {<HiRocketLaunch size={20} />}
               </button>
             </div>
           </div>
@@ -173,6 +206,12 @@ const App = () => {
                   style={{
                     borderStyle: hireMeHover ? "inset" : "outset",
                     backgroundColor: hireMeHover ? "lightblue" : "#ced2d7",
+
+                    boxShadow: hireMeHover
+                      ? "0 0 10px rgb(245, 244, 244), 0 0 20px #39FF14"
+                      : "none",
+                    transition: "background 0.3s",
+                    transform: hireMeHover ? "scale(1.1)" : "scale(1)",
                     cursor: "pointer",
                   }}
                   onMouseEnter={() => setHireMeHover(true)}

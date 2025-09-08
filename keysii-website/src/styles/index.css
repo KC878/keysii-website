@@ -1,13 +1,13 @@
 
 html, body {
-  height: 10;
+  height: 100vh;
   background-color: #0f0f0f;
   
 }
 
 .main-container {
   display: grid;
-  grid-template-columns: 1fr;   /* main + sidebar */
+  grid-template-columns: 1fr;   
   grid-template-rows: auto 1fr auto; /* header, content, footer */
   grid-template-areas:
     "header"
@@ -24,7 +24,7 @@ html, body {
 .header {
   grid-area: header;
   /* background-color: red;  */
-  padding: 20px; 
+  padding: 10px; 
   
 
   
