@@ -9,6 +9,7 @@ import type { HeaderItems, ClassText } from "./types/types"; // explicityly defi
 import type { IconType } from "react-icons";
 
 import { logos } from "./constants/logos";
+import { images } from "./constants/images";
 
 import { MdCallMade } from "react-icons/md";
 import { FaArrowDownLong } from "react-icons/fa6";
@@ -200,7 +201,7 @@ const App = () => {
             {/* contentCenter */}
             <div>
               <div className="centerContentOne-container">
-                <img className="image-person" src="../../public/person.png" />
+                <img className="image-person" src={images.person} />
               </div>
             </div>
 
