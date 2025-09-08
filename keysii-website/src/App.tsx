@@ -201,7 +201,12 @@ const App = () => {
             {/* contentCenter */}
             <div>
               <div className="centerContentOne-container">
-                <img className="image-person" src={images.person} />
+                <img
+                  className="image-person"
+                  src={images.person}
+                  loading="lazy"
+                  alt="Keysii"
+                />
               </div>
             </div>
 
