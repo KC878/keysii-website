@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ headerItems, baseStyle }) => {
               hover === item.id
                 ? "0 0 10px rgb(245, 244, 244), 0 0 20px #39FF14"
                 : "none",
-            transition: "background 0.3s",
+            transition: "background 0.1s",
             transform: hover === item.id ? "scale(1.05)" : "scale(1)",
           }}
           onMouseEnter={() => {

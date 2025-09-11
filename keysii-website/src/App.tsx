@@ -5,8 +5,12 @@ import "./styles/contentOneRight.css";
 
 import Header from "./components/Header";
 import React, { useState } from "react";
-import type { HeaderItems, ClassText } from "./types/types"; // explicityly define type
-import type { IconType } from "react-icons";
+import type {
+  HeaderItems,
+  ClassText,
+  CardItems,
+  IconsType,
+} from "./types/types"; // explicityly define type
 
 import { logos } from "./constants/logos";
 import { images } from "./constants/images";
@@ -15,6 +19,17 @@ import { MdCallMade } from "react-icons/md";
 import { FaArrowDownLong } from "react-icons/fa6";
 import { FaLinkedin, FaFacebook, FaInstagram, FaGithub } from "react-icons/fa";
 import { HiRocketLaunch } from "react-icons/hi2";
+import Card from "./components/Card";
+
+import { FaLaptopCode, FaDatabase, FaHandsHelping } from "react-icons/fa";
+import { AiOutlineFileText } from "react-icons/ai";
+import { MdOutlineBugReport } from "react-icons/md";
+
+// document.addEventListener("contextmenu", (e) => {
+//   e.preventDefault();
+//   alert("Content is protected");
+// }); // prevents right click to inspect element
+// attach some kin of logic here like a notif to say content is protected
 
 const App = () => {
   const links = {
@@ -35,11 +50,7 @@ const App = () => {
     { id: "contact", title: "CONTACT" },
   ]);
 
-  type SocialType = {
-    icon: IconType;
-    href: string;
-  };
-  const socialMedia: SocialType[] = [
+  const socialMedia: IconsType[] = [
     {
       icon: FaLinkedin,
       href: "https://www.linkedin.com/in/kent-christian-cagadas-0985a1350/",
@@ -69,6 +80,7 @@ const App = () => {
     width: "100px",
     borderRadius: "10px",
     cursor: "pointer",
+    textDecoration: "none",
   };
 
   // socialMedia Items style
@@ -78,6 +90,41 @@ const App = () => {
     padding: "7px",
     borderRadius: "10px",
   };
+
+  // Card Properties
+
+  const cardProps: CardItems[] = [
+    {
+      id: 1,
+      title: "Full-Stack Development",
+      disc: "I build responsive and scalable applications using React.js for the frontend, Node.js for the backend, and PostgreSQL for data management. This includes creating APIs, integrating databases, and ensuring smooth communication between system components.",
+      icon: FaLaptopCode,
+    },
+    {
+      id: 2,
+      title: "System Documentation",
+      disc: "I create clear and structured documentation such as user manuals, technical reports, and system guides. This ensures that both technical teams and end-users can understand and use the system effectively.",
+      icon: AiOutlineFileText,
+    },
+    {
+      id: 3,
+      title: "Quality Assurance &Testing",
+      disc: "I conduct manual and functional testing to ensure that applications work reliably and meet requirements. My focus is on detecting bugs early, improving performance, and ensuring system stability before deployment.",
+      icon: MdOutlineBugReport,
+    },
+    {
+      id: 4,
+      title: "Database Design",
+      disc: "I design efficient and organized databases, including Entity Relationship Diagrams (ERDs), schemas, and normalization. I focus on building databases that are optimized for performance, scalability, and easy integration with applications.",
+      icon: FaDatabase,
+    },
+    {
+      id: 5,
+      title: "Project Assistance",
+      disc: "I provide support in both academic and business IT projects, including research, development, and documentation. This service covers collaboration, technical support, and ensuring projects meet deadlines and requirements.",
+      icon: FaHandsHelping,
+    },
+  ];
 
   const [hireMeHover, setHireMeHover] = useState<boolean>(false);
   const [downArrowHover, setDownArrowHover] = useState<boolean>(false);
@@ -272,7 +319,12 @@ const App = () => {
               ))}
             </div>
           </div>
-          <div className="content-list">List Items</div>
+
+          {/* services offered */}
+          <div className="content-list">
+            <h1 style={{ color: "lightgray" }}>Services Offered</h1>
+            <Card cardProps={cardProps} />
+          </div>
           <div className="content-two">Content 2 </div>
         </div>
         <div className="footer">Footer</div>
