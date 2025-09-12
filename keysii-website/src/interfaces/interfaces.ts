@@ -10,4 +10,5 @@ export interface HeaderProps {
 
 export interface CardProps {
   cardProps: CardItems[];
+  isMobile: boolean;
 }

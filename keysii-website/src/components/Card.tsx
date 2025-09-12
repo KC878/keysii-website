@@ -1,7 +1,7 @@
 import type { CardProps } from "../interfaces/interfaces";
 import { useEffect, useRef, useState } from "react";
 
-const Card: React.FC<CardProps> = ({ cardProps }) => {
+const Card: React.FC<CardProps> = ({ cardProps, isMobile }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const lastScrollLeft = useRef(0); // track last scroll position
 
@@ -53,6 +53,8 @@ const Card: React.FC<CardProps> = ({ cardProps }) => {
         padding: "10px",
         scrollbarWidth: "none",
         scrollBehavior: "smooth",
+
+        scale: isMobile ? "0.8" : "0.9",
       }}
       className="card-container"
     >

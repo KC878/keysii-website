@@ -299,7 +299,7 @@ const App = () => {
                   <MdCallMade />
                 </div>
               </div>
-              <div className="TextSeven">
+              <div className="textSeven">
                 <div
                   className="downArrow-button"
                   style={{
@@ -328,7 +328,14 @@ const App = () => {
             </div>
 
             {/* SocialMedias */}
-            <div className="rightContentOne-container">
+            <div
+              className="rightContentOne-container"
+              // override flexdirection if Mobile
+              style={{
+                flexDirection: isMobile ? "row" : "column",
+                marginTop: isMobile ? "2vh" : "",
+              }}
+            >
               {socialMedia.map((Icon, item) => (
                 <a
                   id={item.toString()}
@@ -353,8 +360,12 @@ const App = () => {
 
           {/* services offered */}
           <div className="content-list">
-            <h1 style={{ color: "lightgray" }}>Services Offered</h1>
-            <Card cardProps={cardProps} />
+            <h1
+              style={{ color: "lightgray", fontSize: "clamp(1rem, 5vw, 2rem)" }}
+            >
+              Services Offered
+            </h1>
+            <Card cardProps={cardProps} isMobile={isMobile} />
           </div>
           <div className="content-two">
             <Test />

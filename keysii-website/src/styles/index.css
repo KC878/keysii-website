@@ -85,9 +85,7 @@ html, body {
     grid-template-columns: 1fr; /* force single column */
   }
 
-  .content-one {
-    scale: 0.4
-  }
+
   
 }
 
