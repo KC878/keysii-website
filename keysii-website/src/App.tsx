@@ -4,7 +4,7 @@ import "./styles/contentOneCenter.css";
 import "./styles/contentOneRight.css";
 
 import Header from "./components/Header";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type {
   HeaderItems,
   ClassText,
@@ -24,6 +24,8 @@ import Card from "./components/Card";
 import { FaLaptopCode, FaDatabase, FaHandsHelping } from "react-icons/fa";
 import { AiOutlineFileText } from "react-icons/ai";
 import { MdOutlineBugReport } from "react-icons/md";
+import { RiMenuUnfold3Line, RiMenuUnfold4Fill } from "react-icons/ri";
+import Test from "./components/testComponents/Test";
 
 // document.addEventListener("contextmenu", (e) => {
 //   e.preventDefault();
@@ -32,6 +34,21 @@ import { MdOutlineBugReport } from "react-icons/md";
 // attach some kin of logic here like a notif to say content is protected
 
 const App = () => {
+  // mobile size dynamic
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+  const [isTab, setIsTab] = useState(window.innerWidth <= 923);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 600);
+      setIsTab(window.innerWidth <= 923);
+      console.log("Current Width: ", window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const links = {
     portfolioLink: new URL(
       "https://flannel-egg-5a1.notion.site/Kent-Christian-E-Cagadas-Portfolio-246290f7e7248031a0eee3ab0b4d7bb9"
@@ -76,18 +93,20 @@ const App = () => {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "30px",
-    width: "100px",
+    height: "1.875rem",
+    width: isTab ? "clamp(3rem, 6vw, 10rem)" : "clamp(6rem, 10vw, 12rem)",
     borderRadius: "10px",
     cursor: "pointer",
     textDecoration: "none",
+    flexShrink: 1,
+    fontSize: "clamp(0.5rem, 1.6vw, 1.5rem)",
   };
 
   // socialMedia Items style
   const socialMediaStyle: React.CSSProperties = {
     display: "flex",
     justifyContent: "center",
-    padding: "7px",
+    padding: "0.4375",
     borderRadius: "10px",
   };
 
@@ -148,95 +167,107 @@ const App = () => {
     <>
       <div className="main-container">
         <div className="header">
-          <div
-            style={{
-              display: "flex",
-
-              justifyContent: "center",
-            }}
-          >
-            {/* Logo */}
-            <img
-              loading="lazy"
-              alt="logo"
-              src={logos.mainLogo}
-              style={{
-                width: "4%",
-                borderRadius: "50%",
-                marginLeft: "50px",
-                cursor: "pointer",
-                transition: "background 0.3s",
-                transform: logoHover ? "scale(1.5)" : "scale(1)",
-              }}
-              onMouseEnter={() => setLogoHover(true)}
-              onMouseLeave={() => setLogoHover(false)}
-            />
-            {/* <div
-              style={{
-                backgroundColor: logoHover ? "skyblue" : "initial",
-                transition: "background 0.3s",
-                cursor: "pointer",
-              }}
-              onMouseEnter={() => setLogoHover(true)}
-              onMouseLeave={() => setLogoHover(false)}
-            >
-              
-            </div> */}
-
-            {/* HeaderItems */}
+          {isMobile ? (
             <div
               style={{
+                marginLeft: "5%",
                 display: "flex",
-                flexDirection: "row",
-                flexGrow: 1,
-                gap: "10px",
-                justifyContent: "center",
-                alignItems: "center",
-                marginLeft: "120px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                alert("display-drawer");
               }}
             >
-              <Header headerItems={headerItems} baseStyle={headerBaseStyle} />
+              <RiMenuUnfold3Line color="white" size={30} />
             </div>
-
-            {/* Something Button To add */}
+          ) : (
             <div
               style={{
                 display: "flex",
-                flexGrow: 1,
-                // backgroundColor: "blue",
-                justifyContent: "end",
-                alignContent: "center",
-                marginRight: "20px",
+                alignItems: "center",
+                justifyContent: "space-between",
+                flexWrap: "nowrap",
+                gap: "1rem",
               }}
+              className="header-child-container"
             >
-              <button
+              {/* Logo */}
+              <img
+                loading="lazy"
+                alt="logo"
+                src={logos.mainLogo}
+                style={{
+                  width: "5vw",
+                  height: "auto", //
+                  objectFit: "contain",
+                  borderRadius: "50%",
+                  marginLeft: "3.125rem",
+                  cursor: "pointer",
+                  flexShrink: 1,
+                  transition: "background 0.3s",
+                  transform: logoHover ? "scale(1.5)" : "scale(1)",
+                }}
+                onMouseEnter={() => setLogoHover(true)}
+                onMouseLeave={() => setLogoHover(false)}
+              />
+
+              {/* HeaderItems */}
+              <div
                 style={{
                   display: "flex",
                   flexDirection: "row",
+                  flexGrow: 10,
+                  gap: "1.25rem",
                   justifyContent: "center",
                   alignItems: "center",
-                  gap: "5px",
-                  fontFamily: "Montserrat",
-                  fontWeight: "100px",
-                  borderRadius: "15px",
-                  cursor: "pointer",
-                  color: startNowHover ? "white" : "initial",
-                  backgroundColor: startNowHover ? "#39FF14" : "#ced2d7",
-                  boxShadow: startNowHover
-                    ? "0 0 10px #32CD32, 0 0 20px rgba(50, 205, 50, 0.6)"
-                    : "none",
-                  transition: "background 0.3s",
-                  transform: startNowHover ? "scale(1.05)" : "scale(1)",
+                  // marginLeft: "7.5rem",
+                  flexShrink: 1,
                 }}
-                onMouseEnter={() => setStartNowHover(true)}
-                onMouseLeave={() => setStartNowHover(false)}
-                onClick={() => alert("Create a Form Request")}
               >
-                <p>START NOW</p>
-                {<HiRocketLaunch size={20} />}
-              </button>
+                <Header headerItems={headerItems} baseStyle={headerBaseStyle} />
+              </div>
+
+              {/* Something Button To add */}
+              <div
+                style={{
+                  display: "flex",
+                  flexGrow: 1,
+                  // backgroundColor: "blue",
+                  justifyContent: "end",
+                  alignContent: "center",
+                  marginRight: "5%",
+                }}
+              >
+                <button
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "0.3125rem",
+                    fontFamily: "Montserrat",
+                    fontWeight: "4",
+                    borderRadius: "15px",
+                    cursor: "pointer",
+                    flexShrink: 1,
+                    color: startNowHover ? "white" : "initial",
+                    backgroundColor: startNowHover ? "#39FF14" : "#ced2d7",
+                    boxShadow: startNowHover
+                      ? "0 0 10px #32CD32, 0 0 20px rgba(50, 205, 50, 0.6)"
+                      : "none",
+                    transition: "background 0.3s",
+                    transform: startNowHover ? "scale(1.05)" : "scale(1)",
+                  }}
+                  onMouseEnter={() => setStartNowHover(true)}
+                  onMouseLeave={() => setStartNowHover(false)}
+                  onClick={() => alert("Create a Form Request")}
+                >
+                  {!isTab && <p>START NOW</p>}
+                  {<HiRocketLaunch size={isTab ? 30 : 20} />}
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <div className="content">
@@ -325,7 +356,9 @@ const App = () => {
             <h1 style={{ color: "lightgray" }}>Services Offered</h1>
             <Card cardProps={cardProps} />
           </div>
-          <div className="content-two">Content 2 </div>
+          <div className="content-two">
+            <Test />
+          </div>
         </div>
         <div className="footer">Footer</div>
       </div>
