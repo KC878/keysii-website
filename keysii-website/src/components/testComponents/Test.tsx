@@ -86,6 +86,7 @@ const Test = () => {
           }}
         >
           {String(scrollRef.current)}
+          {item}
         </div>
       ))}
     </div>

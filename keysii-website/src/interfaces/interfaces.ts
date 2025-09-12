@@ -1,4 +1,4 @@
-import type {HeaderItems, IconsType} from '../types/types';
+import type {HeaderItems} from '../types/types';
 
 import type { CardItems } from '../types/types';
 
