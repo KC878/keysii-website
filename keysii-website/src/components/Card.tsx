@@ -20,18 +20,6 @@ const Card: React.FC<CardProps> = ({ cardProps }) => {
     lastScrollLeft.current = current;
   };
 
-  // const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-  //   const el = scrollRef.current;
-  //   if (!el) return;
-
-  //   // Horizontal Scroll with vertical wheel
-  //   el.scrollLeft += e.deltaY;
-
-  //   // stop page vertical scroll
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  // };
-
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
