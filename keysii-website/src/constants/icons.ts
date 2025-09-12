@@ -1,7 +1,7 @@
-import kcIcon from '../assets/kcIcon.png';
-import circledIcon from '../assets/circled-kcIcon.png';
 
-export const images = {
-  kcIcon,
+import circledIcon from '../assets/circledIcon.png';
+
+export const icon = {
+  
   circledIcon
 };

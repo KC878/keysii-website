@@ -61,14 +61,15 @@ html, body {
 .content-two {
   grid-area: content-two;
   padding: 1.25rem;
-  background-color: lightpink;
+  /* background-color: lightpink; */
 
 }
 
 .footer {
   grid-area: footer;
-  background-color: purple;
+  /* background-color: purple; */
   padding: 1.25rem;
+
 }
 
 

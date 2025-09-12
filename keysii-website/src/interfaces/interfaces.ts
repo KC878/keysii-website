@@ -1,10 +1,11 @@
-import type {HeaderItems} from '../types/types';
+import type {HeaderItems, IconsType} from '../types/types';
 
 import type { CardItems } from '../types/types';
 
 export interface HeaderProps {
   headerItems: HeaderItems[];
   baseStyle?: React.CSSProperties;
+  setStartNow?: React.Dispatch<React.SetStateAction<boolean>>;
 } // type for headers
 
 

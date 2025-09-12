@@ -4,6 +4,7 @@ export type HeaderItems = {
   id: string;
   title: string;
   link?: URL;
+  icon?: IconType; // optional
 };
 
 export type ClassText = {
@@ -19,6 +20,7 @@ export type CardItems = {
 }
 
 export type IconsType = {
+  index?: number;
   icon: IconType;
   href?: string;
 };

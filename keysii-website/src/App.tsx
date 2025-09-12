@@ -24,8 +24,18 @@ import Card from "./components/Card";
 import { FaLaptopCode, FaDatabase, FaHandsHelping } from "react-icons/fa";
 import { AiOutlineFileText } from "react-icons/ai";
 import { MdOutlineBugReport } from "react-icons/md";
-import { RiMenuUnfold3Line, RiMenuUnfold4Fill } from "react-icons/ri";
+
+import {
+  FiHome, // Home
+  FiInfo, // About
+  FiBriefcase, // Portfolio
+  FiSettings, // Services
+  FiFileText, // Pages
+  FiMail, // Contact
+} from "react-icons/fi";
+
 import Test from "./components/testComponents/Test";
+import NavDrawer from "./components/NavDrawer";
 
 // document.addEventListener("contextmenu", (e) => {
 //   e.preventDefault();
@@ -34,6 +44,15 @@ import Test from "./components/testComponents/Test";
 // attach some kin of logic here like a notif to say content is protected
 
 const App = () => {
+  // For Mobile Start Now
+  const [startNow, setStartNow] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (startNow) {
+      alert("Start Now!");
+    }
+  }, [startNow]);
+
   // mobile size dynamic
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
   const [isTab, setIsTab] = useState(window.innerWidth <= 923);
@@ -59,12 +78,18 @@ const App = () => {
     {
       id: "home",
       title: "HOME",
+      icon: FiHome,
     },
-    { id: "about", title: "ABOUT" },
-    { id: "portfolio", title: "PORTFOLIO", link: links.portfolioLink },
-    { id: "service", title: "SERVICE" },
-    { id: "pages", title: "PAGES" },
-    { id: "contact", title: "CONTACT" },
+    { id: "about", title: "ABOUT", icon: FiInfo },
+    {
+      id: "portfolio",
+      title: "PORTFOLIO",
+      link: links.portfolioLink,
+      icon: FiBriefcase,
+    },
+    { id: "service", title: "SERVICE", icon: FiSettings },
+    { id: "pages", title: "PAGES", icon: FiFileText },
+    { id: "contact", title: "CONTACT", icon: FiMail },
   ]);
 
   const socialMedia: IconsType[] = [
@@ -172,13 +197,15 @@ const App = () => {
               style={{
                 marginLeft: "5%",
                 display: "flex",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                alert("display-drawer");
+                flexDirection: isMobile ? "row" : "initial", // none
               }}
             >
-              <RiMenuUnfold3Line color="white" size={30} />
+              <div style={{ cursor: "pointer", display: "flex" }}>
+                <NavDrawer
+                  headerItems={headerItems}
+                  setStartNow={setStartNow}
+                />
+              </div>
             </div>
           ) : (
             <div
@@ -371,7 +398,15 @@ const App = () => {
             <Test />
           </div>
         </div>
-        <div className="footer">Footer</div>
+        <div
+          className="footer"
+          style={{
+            fontFamily: "Merriweather, serif",
+            color: "white",
+          }}
+        >
+          © 2025 Kent Christian Cagadas. Designed & coded with ❤️ and ☕.
+        </div>
       </div>
     </>
   );

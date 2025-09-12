@@ -82,6 +82,7 @@ const Test = () => {
             padding: "10px",
             cursor: "pointer",
             flexShrink: 0,
+            color: "white",
           }}
         >
           {String(scrollRef.current)}
